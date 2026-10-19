@@ -1,0 +1,22 @@
+import numpy as np
+from matplotlib import pyplot as plt
+from matplotlib.collections import LineCollection
+
+colors = ["indigo", "blue", "green", "yellow", "orange", "red"]
+
+# Create a list of half-circles with varying radii
+theta = np.linspace(0, np.pi, 36)
+radii = np.linspace(4, 5, num=len(colors))
+arcs = [np.column_stack([r * np.cos(theta), r * np.sin(theta)]) for r in radii]
+
+# Plot the half-circles
+fig, ax = plt.subplots()
+ax.set_xlim(-6, 6)
+ax.set_ylim(0, 6)
+ax.set_aspect("equal")
+
+line_collection = LineCollection(arcs, colors=colors, linewidths=4)
+ax.add_collection(line_collection)
+ax.text(0, 1, "Welcome to python!", fontsize=14, ha='center')
+
+plt.show()
